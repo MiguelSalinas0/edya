@@ -1,11 +1,15 @@
+import numpy as np
+
+
 class Pila:
 
     __tope = 0
     __cantidad = 0
-    __items = []
+    __items = None
 
     def __init__(self, cantidad):
         self.__cantidad = cantidad
+        self.__items = np.empty(self.__cantidad, dtype=int)
 
     def vacia(self):
         return self.__tope == 0
@@ -17,7 +21,7 @@ class Pila:
         if (self.llena()):
             print('Pila Llena')
         else:
-            self.__items.append(dato)
+            self.__items[self.__tope] = dato
             self.__tope += 1
 
     def suprimir(self):
@@ -25,18 +29,14 @@ class Pila:
         if (self.vacia()):
             print('Pila Vacia')
         else:
-            eliminado = self.__items.pop()
+            eliminado = self.__items[self.__tope-1]
             self.__tope -= 1
         return eliminado
 
     def getTope(self):
         return self.__items[self.__tope-1]
 
-    def getCantidad(self):
-        return self.__cantidad
-
     def mostrar(self):
-        print('Pila 1')
         if (self.vacia()):
             print('[]')
         for i in range(self.__tope):
