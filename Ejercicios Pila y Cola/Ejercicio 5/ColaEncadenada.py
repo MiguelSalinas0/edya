@@ -19,8 +19,8 @@ class Celda:
 class Cola:
 
     __cant = 0
-    __ul = Celda()
-    __pr = Celda()
+    __ul = None
+    __pr = None
 
     def __init__(self):
         self.__cant = 0
