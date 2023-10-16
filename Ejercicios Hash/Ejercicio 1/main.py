@@ -12,28 +12,30 @@ Realice un breve análisis comparativo basado en las dos consideraciones anterio
 import random
 from TablaHash import TablaHash
 
+
 def test(dataset, size, usarPrimo):
-	table = TablaHash(size, usarPrimo)
+    table = TablaHash(size, usarPrimo)
 
-	for key, value in dataset:
-		table.insertar(key, value)
+    for key, value in dataset:
+        table.insertar(key, value)
 
-	table.probeLength = 0
+    table.probeLength = 0
 
-	for key, value in dataset:
-		table.buscar(key)
+    for key, value in dataset:
+        table.buscar(key)
 
-	print(f'  Tamaño {size} (tamaño real {table.getSize()})')
-	print(f'  Factor de carga: {table.calcularFactorCarga() * 100 :.2f}%')
-	print(f'  Longitud promedio de la secuencia de prueba: {table.probeLength / 1000 :.2f}')
+    print(f'  Tamaño {size} (tamaño real {table.getSize()})')
+    print(f'  Factor de carga: {table.calcularFactorCarga() * 100 :.2f}%')
+    print(f'  Longitud promedio de la secuencia de prueba: {table.probeLength / 1000 :.2f}')
+
 
 if __name__ == '__main__':
-	tamañoInicial = 1000
-	random.seed(111)
-	dataset = [(random.randint(0, 1000000), i) for i in range(tamañoInicial)]
+    tamañoInicial = 1000
+    random.seed(111)
+    dataset = [(random.randint(0, 1000000), i) for i in range(tamañoInicial)]
 
-	print('Tabla Hash con tamaño no primo')
-	test(dataset, tamañoInicial, False)
-	print()
-	print('Tabla Hash con tamaño primo')
-	test(dataset, tamañoInicial, True)
+    print('Tabla Hash con tamaño no primo')
+    test(dataset, tamañoInicial, False)
+    print()
+    print('Tabla Hash con tamaño primo')
+    test(dataset, tamañoInicial, True)

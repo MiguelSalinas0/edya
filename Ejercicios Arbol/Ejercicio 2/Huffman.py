@@ -68,3 +68,23 @@ class Huffman:
         encoded = self.encode()
         with open(output, 'wb') as file:
             file.write(encoded)
+
+    def descomprimir(self, input, output):
+        with open(input, 'rb') as file:
+            compressed_data = file.read()
+
+        binary_data = ''.join(format(byte, '08b') for byte in compressed_data)
+
+        decoded_text = ""
+        current_code = ""
+
+        for bit in binary_data:
+            current_code += bit
+            for char, code in self.__tablaHuffman.items():
+                if code == current_code:
+                    decoded_text += char
+                    current_code = ""
+                    break
+
+        with open(output, 'w') as file:
+            file.write(decoded_text)
