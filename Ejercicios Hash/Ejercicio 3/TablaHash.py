@@ -130,8 +130,8 @@ class TablaHash:
 		result = 0
 
 		while key != 0:
-			result += key % 1000
-			key //= 1000
+			result += key % 100
+			key //= 100
 
 		return result % self.__size
 
